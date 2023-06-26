@@ -35,7 +35,7 @@ public class PilotRace {
 	@ManyToOne
 	private Race race;
 
-	public PilotRace(PilotRaceDTO dto, Pilot pilot, Race race) {
+	public PilotRace(PilotRaceDTO dto, Race race, Pilot pilot) {
 		this(dto.getId(), dto.getPlacing(), pilot, race);
 	}
 

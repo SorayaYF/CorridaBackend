@@ -11,7 +11,7 @@ public class PilotRaceDTO {
 
 	private Integer id;
 	private Integer placing;
-	private Integer runId;
+	private Integer raceId;
 	private Integer pilotId;
 	private String pilotName;
 
