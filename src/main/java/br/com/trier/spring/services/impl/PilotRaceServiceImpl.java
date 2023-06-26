@@ -50,15 +50,6 @@ public class PilotRaceServiceImpl implements PilotRaceService {
 	}
 
 	@Override
-	public List<PilotRace> findPlacing(Integer placing) {
-		List<PilotRace> lista = repository.findPlacing(placing);
-		if (lista.isEmpty()) {
-			throw  new ObjectNotFound("Nenhum cadastro encontrado");
-		}
-		return lista;
-	}
-
-	@Override
 	public List<PilotRace> findByPilot(Pilot pilot) {
 		List<PilotRace> lista = repository.findByPilot(pilot);
 		if (lista.isEmpty()) {

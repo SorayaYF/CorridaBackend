@@ -27,8 +27,8 @@ import br.com.trier.spring.domain.dto.UserDTO;
 
 @ActiveProfiles("test")
 @AutoConfigureTestDatabase(replace = Replace.ANY)
-@Sql(executionPhase=ExecutionPhase.BEFORE_TEST_METHOD,scripts="classpath:/resources/sqls/usuario.sql")
-@Sql(executionPhase=ExecutionPhase.AFTER_TEST_METHOD,scripts="classpath:/resources/sqls/limpa_tabela.sql")
+@Sql(executionPhase=ExecutionPhase.BEFORE_TEST_METHOD,scripts="classpath:/resources/sql/usuario.sql")
+@Sql(executionPhase=ExecutionPhase.AFTER_TEST_METHOD,scripts="classpath:/resources/sql/limpa_tabela.sql")
 @SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class UserResourceTest {
 
@@ -63,8 +63,8 @@ class UserResourceTest {
 	
     @Test
     @DisplayName("Deletar")
-    @Sql({"classpath:/resources/sqls/usuario.sql"})
-    @Sql({"classpath:/resources/sqls/limpa_tabela.sql"})
+    @Sql({"classpath:/resources/sql/usuario.sql"})
+    @Sql({"classpath:/resources/sql/limpa_tabela.sql"})
     public void delete() {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
@@ -80,8 +80,8 @@ class UserResourceTest {
     
     @Test
     @DisplayName("Deletar inexistente")
-    @Sql({"classpath:/resources/sqls/users.sql"})
-    @Sql({"classpath:/resources/sqls/limpa_tabela.sql"})
+    @Sql({"classpath:/resources/sql/usuario.sql"})
+    @Sql({"classpath:/resources/sql/limpa_tabela.sql"})
     public void deleteUser() {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
@@ -98,7 +98,7 @@ class UserResourceTest {
 	
 	@Test
 	@DisplayName("Cadastrar usuário")
-	@Sql({"classpath:/resources/sqls/limpa_tabela.sql"})
+	@Sql({"classpath:/resources/sql/limpa_tabela.sql"})
 	public void testCreateUser() {
 		UserDTO dto = new UserDTO(null, "nome", "email", "senha", "permissao_usuario");
 		HttpHeaders headers = new HttpHeaders();

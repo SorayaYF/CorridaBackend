@@ -18,8 +18,6 @@ public interface PilotRaceService {
 
 	void delete(Integer id);
 
-	List<PilotRace> findPlacing(Integer placing);
-
 	List<PilotRace> findByPilot(Pilot pilot);
 
 	List<PilotRace> findByRace(Race race);

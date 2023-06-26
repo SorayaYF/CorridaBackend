@@ -12,8 +12,6 @@ import br.com.trier.spring.domain.Race;
 @Repository
 public interface PilotRaceRepository extends JpaRepository<PilotRace, Integer> {
 
-	List<PilotRace> findPlacing(Integer placing);
-
 	List<PilotRace> findByPilot(Pilot pilot);
 
 	List<PilotRace> findByRace(Race race);
