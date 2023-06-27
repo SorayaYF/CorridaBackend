@@ -39,7 +39,7 @@ public class SpeedwayServiceImpl implements SpeedwayService {
 	public List<Speedway> listAll() {
 		List<Speedway> lista = repository.findAll();
 		if (lista.isEmpty()) {
-			throw new ObjectNotFound("Nenhuma pista cadastrado");
+			throw new ObjectNotFound("Nenhuma pista cadastrada");
 		}
 		return lista;
 	}

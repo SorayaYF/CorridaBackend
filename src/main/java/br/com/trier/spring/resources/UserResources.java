@@ -25,16 +25,16 @@ public class UserResources {
 	@Autowired
 	private UserService service;
 
-	@Secured({"ROLE_ADMIN"})
-	@PostMapping
-	public ResponseEntity<UserDTO> insert(@RequestBody UserDTO user) {
-		return ResponseEntity.ok(service.insert(new User(user)).toDTO());
-	}
-
 	@Secured({"ROLE_USER"})
 	@GetMapping("/{id}")
 	public ResponseEntity<UserDTO> findByID(@PathVariable Integer id) {
 		return ResponseEntity.ok(service.findById(id).toDTO());
+	}
+	
+	@Secured({"ROLE_ADMIN"})
+	@PostMapping
+	public ResponseEntity<UserDTO> insert(@RequestBody UserDTO user) {
+		return ResponseEntity.ok(service.insert(new User(user)).toDTO());
 	}
 
 	@Secured({"ROLE_USER"})

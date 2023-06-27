@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
 	public List<User> findByNameStartsWithIgnoreCase(String name) {
 		List<User> lista = repository.findByNameStartsWithIgnoreCase(name);
 		if (lista.isEmpty()) {
-			throw new ObjectNotFound("Nenhum usário inicia com %s".formatted(name));
+			throw new ObjectNotFound("Nenhum nome de usuário inicia com %s cadastrado".formatted(name));
 		}
 		return lista;
 	}

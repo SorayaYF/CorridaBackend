@@ -68,4 +68,18 @@ public class PilotRaceResource {
 		service.delete(id);
 		return ResponseEntity.ok().build();
 	}
+
+	@Secured({ "ROLE_USER" })
+	@GetMapping("/pilot/{id}")
+	public ResponseEntity<List<PilotRaceDTO>> findByPilotOrderByPlacement(@PathVariable Integer id) {
+		return ResponseEntity
+				.ok(service.findByPilot(pilotService.findById(id)).stream().map(pilot -> pilot.toDTO()).toList());
+	}
+
+	@Secured({ "ROLE_USER" })
+	@GetMapping("/race/{id}")
+	public ResponseEntity<List<PilotRaceDTO>> findByRaceOrderByPlacement(@PathVariable Integer id) {
+		return ResponseEntity
+				.ok(service.findByRace(raceService.findById(id)).stream().map(pilot -> pilot.toDTO()).toList());
+	}
 }

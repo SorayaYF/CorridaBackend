@@ -1,2 +1,0 @@
-INSERT INTO usuario (id_usuario, email_usuario, nome_usuario, senha_usuario, permissoes_usuario) VALUES('1', 'usuario1@gmail.com', 'Usuario 1', '123', 'ADMIN,USER');
-INSERT INTO usuario (id_usuario, email_usuario, nome_usuario, senha_usuario, permissoes_usuario) VALUES('2', 'usuario2@gmail.com', 'Usuario 2', '123', 'USER');
