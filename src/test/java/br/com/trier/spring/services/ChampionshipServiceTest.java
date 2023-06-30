@@ -79,7 +79,7 @@ class ChampionshipServiceTest extends BaseTests {
 	void insertNull() {
 		Championship campeonato = new Championship(null, "Formula 2", null);
 		var ex = assertThrows(IntegrityViolation.class, () -> campeonatoService.insert(campeonato));
-		assertEquals("O ano não pode ser nulo!", ex.getMessage());
+		assertEquals("O ano não pode ser nulo", ex.getMessage());
 	}
 
 	@Test
@@ -96,7 +96,7 @@ class ChampionshipServiceTest extends BaseTests {
 		assertEquals(2, campeonatoService.listAll().size());
 		assertEquals(1, campeonato.getId());
 		assertEquals("Formula 2", campeonato.getDescription());
-		assertEquals(2005, campeonato.getYear());
+		assertEquals(1999, campeonato.getYear());
 	}
 
 	@Test
@@ -114,8 +114,8 @@ class ChampionshipServiceTest extends BaseTests {
 	void delete() {
 		assertEquals(2, campeonatoService.listAll().size());
 		campeonatoService.delete(1);
-		assertEquals(2, campeonatoService.listAll().size());
-		assertEquals(1, campeonatoService.listAll().get(0).getId());
+		assertEquals(1, campeonatoService.listAll().size());
+		assertEquals(2, campeonatoService.listAll().get(0).getId());
 	}
 
 	@Test
@@ -169,8 +169,8 @@ class ChampionshipServiceTest extends BaseTests {
 	@Sql({ "classpath:/resources/sqls/campeonato.sql" })
 	void findByYearBetween() {
 		assertEquals(2, campeonatoService.findByYearBetween(2000, 2010).size());
-		var ex = assertThrows(ObjectNotFound.class, () -> campeonatoService.findByYearBetween(2000, 2010));
-		assertEquals("Nenhum campeonato entre 2000 e 2010", ex.getMessage());
+		var ex = assertThrows(ObjectNotFound.class, () -> campeonatoService.findByYearBetween(1998, 1999));
+		assertEquals("Nenhum campeonato entre 1998 e 1999", ex.getMessage());
 	}
 
 }

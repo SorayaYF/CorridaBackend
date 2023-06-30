@@ -37,7 +37,7 @@ class RaceServiceTest extends BaseTests {
 		Race race = service.findById(1);
 		assertNotNull(race);
 		assertEquals(1, race.getId());
-		assertEquals(2000, race.getDate().getYear());
+		assertEquals(28, race.getDate().getDayOfMonth());
 	}
 
 	@Test
@@ -79,7 +79,7 @@ class RaceServiceTest extends BaseTests {
 	@Test
 	@DisplayName("Alterar corrida")
 	void update() {
-		Race race = new Race(1, DateUtils.strToZonedDateTime("01/01/2001"), speedwayService.findById(1), championshipService.findById(1) );
+		Race race = new Race(1, DateUtils.strToZonedDateTime("01/01/2000"), speedwayService.findById(1), championshipService.findById(1) );
 		service.update(race);
 		assertEquals(2, service.listAll().size());
 		assertEquals(1, race.getId());
@@ -89,9 +89,9 @@ class RaceServiceTest extends BaseTests {
 	@Test
 	@DisplayName("Alterar corrida que não condiz com ano do campeonato")
 	void updateInvalidDate() {
-		Race race = new Race(null, DateUtils.strToZonedDateTime("01/01/2001"), speedwayService.findById(1), championshipService.findById(1) );
+		Race race = new Race(1, DateUtils.strToZonedDateTime("01/01/2001"), speedwayService.findById(1), championshipService.findById(1) );
 		var ex = assertThrows(IntegrityViolation.class, () -> service.update(race));
-		assertEquals("Ano da corrida: 2001 Deve ser o mesmo ano do campeonato: 2000 ", ex.getMessage());
+		assertEquals("Ano da corrida diferente do ano do campeonato", ex.getMessage());
 	}
 
 	@Test
@@ -125,14 +125,14 @@ class RaceServiceTest extends BaseTests {
 	@Test
 	@DisplayName("Encontrar por data")
 	void findByDate() {
-		List<Race> lista = service.findByDate("06/06/2000");
+		List<Race> lista = service.findByDate("10/10/2010");
 		assertEquals(1, lista.size());			
 	}
 	
 	@Test
 	@DisplayName("Encontrar por data inexistente")
 	void findByDateNonExist() {
-		List<Race> lista = service.findByDate("06/06/2000");
+		List<Race> lista = service.findByDate("10/10/2010");
 		assertEquals(1, lista.size());	
 		var ex = assertThrows(ObjectNotFound.class, () -> service.findByDate("07/06/2000"));
 		assertEquals("Nenhuma corrida cadastrada com data 07/06/2000", ex.getMessage());
@@ -156,28 +156,28 @@ class RaceServiceTest extends BaseTests {
 	@DisplayName("Encontrar por campeonato ordenado por data")
 	void findByChampionshipOrderByDate() {
 		List<Race> lista = service.findByChampionshipOrderByDate(championshipService.findById(1));
-		assertEquals(1, lista.size());
+		assertEquals(2, lista.size());
 	}
 	
 	@Test
 	@DisplayName("Encontrar por campeonato ordenado por data inexistente")
 	void findByChampionshipOrderByDateNonExist() {
-		var ex = assertThrows(ObjectNotFound.class, () -> service.findByChampionshipOrderByDate(championshipService.findById(3)));
-		assertEquals("Nenhuma corrida cadastrada no campeonato Formula 1", ex.getMessage());
+		var ex = assertThrows(ObjectNotFound.class, () -> service.findByChampionshipOrderByDate(championshipService.findById(2)));
+		assertEquals("Nenhuma corrida cadastrada no campeonato Formula E", ex.getMessage());
 	}
 
 	@Test
 	@DisplayName("Encontra por pista ordenado por data")
 	void findByRunwayOrderByDate() {
 		List<Race> lista = service.findBySpeedwayOrderByDate(speedwayService.findById(1));
-		assertEquals(1, lista.size());
+		assertEquals(2, lista.size());
 	}
 	
 	@Test
 	@DisplayName("Encontra por pista ordenado por data inexistente")
 	void findByRunwayOrderByDateNonExist() {
-		var ex = assertThrows(ObjectNotFound.class, () -> service.findBySpeedwayOrderByDate(speedwayService.findById(3)));
-		assertEquals("Nenhuma corrida cadastrada na pista Pista 1", ex.getMessage());
+		var ex = assertThrows(ObjectNotFound.class, () -> service.findBySpeedwayOrderByDate(speedwayService.findById(2)));
+		assertEquals("Nenhuma corrida cadastrada na pista Pista 2", ex.getMessage());
 	}
 	
 

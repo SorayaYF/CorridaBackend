@@ -60,10 +60,10 @@ class UserServiceTest extends BaseTests{
 	@Test
 	@DisplayName("Cadastrar usuário")
 	void testInsertUser() {
-		User user = new User(null, "User 3", "email3", "senha3", "ADMIN");
+		User user = new User(3, "User 3", "email3", "senha3", "ADMIN");
 		service.insert(user);
 		assertEquals(1, service.listAll().size());
-		assertEquals(2, user.getId());
+		assertEquals(3, user.getId());
 		assertEquals("User 3", user.getName());
 		assertEquals("email3", user.getEmail());
 		assertEquals("senha3", user.getPassword());
@@ -81,7 +81,7 @@ class UserServiceTest extends BaseTests{
 		assertEquals("email1", user.getEmail());
 		assertEquals("senha1", user.getPassword());
 		assertEquals("ADMIN,USER", user.getRoles());
-		user = new User(null, "User 3", "email3", "senha3", "ADMIN");
+		user = new User(1, "User 3", "email3", "senha3", "ADMIN");
 		service.update(user);
 		assertEquals(2, service.listAll().size());
 		assertEquals(1, user.getId());
@@ -122,18 +122,18 @@ class UserServiceTest extends BaseTests{
 	@DisplayName("Alterar usuário com e-mail duplicado")
 	@Sql({ "classpath:/resources/sqls/usuario.sql" })
 	void testUpdateUserWithDuplicateEmail() {
-		var user = new User(1, "insert", "email", "senha", "ADMIN");
+		var user = new User(1, "insert", "email2", "senha", "ADMIN");
 		var exception = assertThrows(IntegrityViolation.class, () -> service.update(user));
-		assertEquals("Email já existente: email", exception.getMessage());
+		assertEquals("Email já existente: email2", exception.getMessage());
 	}
 
 	@Test
 	@DisplayName("Cadastrar usuário com e-mail duplicado")
 	@Sql({ "classpath:/resources/sqls/usuario.sql" })
 	void testInsertUserWithDuplicateEmail() {
-		User user = new User(null, "insert", "email", "senha", "");
+		User user = new User(null, "insert", "email1", "senha", "");
 		var exception = assertThrows(IntegrityViolation.class, () -> service.insert(user));
-		assertEquals("Email já existente: email", exception.getMessage());
+		assertEquals("Email já existente: email1", exception.getMessage());
 	}
 
 	@Test

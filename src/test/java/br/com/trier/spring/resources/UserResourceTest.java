@@ -25,7 +25,7 @@ import br.com.trier.spring.domain.dto.UserDTO;
 
 @ActiveProfiles("test")
 @SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class UserResourcesTest {
+public class UserResourceTest {
 
 	@Autowired
 	protected TestRestTemplate rest;
@@ -41,9 +41,9 @@ public class UserResourcesTest {
 				requestEntity,    
 				String.class   
 				);
+		assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
 		String token = responseEntity.getBody();
 		headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
 		headers.setBearerAuth(token);
 		return headers;
 	}

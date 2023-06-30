@@ -20,7 +20,7 @@ import br.com.trier.spring.services.UserService;
 
 @RestController
 @RequestMapping("/users")
-public class UserResources {
+public class UserResource {
 
 	@Autowired
 	private UserService service;

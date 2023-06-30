@@ -1,2 +1,2 @@
-INSERT INTO corrida (id_corrida, data_corrida, championship_id_campeonato, speedway_id_pista) VALUES(1, '2000-06-06 06:06:06', 1, 1);
-INSERT INTO corrida (id_corrida, data_corrida, championship_id_campeonato, speedway_id_pista) VALUES(2, '2010-10-10 10:10:10', 2, 2);
+INSERT INTO corrida (id_corrida, data_corrida, championship_id_campeonato, speedway_id_pista) VALUES(1, '2000-06-06 00:00:00', 1, 1);
+INSERT INTO corrida (id_corrida, data_corrida, championship_id_campeonato, speedway_id_pista) VALUES(2, '2010-10-10 00:00:00', 1, 1);
